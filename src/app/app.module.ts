@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/header/header.component';
 import { ProfileComponent } from './componentes/profile/profile.component';
+import { AcercadeComponent } from './componentes/acercade/acercade.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ProfileComponent
+    ProfileComponent,
+    AcercadeComponent
   ],
   imports: [
     BrowserModule,
