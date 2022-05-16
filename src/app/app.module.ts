@@ -6,17 +6,23 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/header/header.component';
 import { ProfileComponent } from './componentes/profile/profile.component';
 import { AcercadeComponent } from './componentes/acercade/acercade.component';
+import { ExperiencesComponent } from './componentes/experiences/experiences.component';
+import { ExperienceComponent } from './componentes/experience/experience.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ProfileComponent,
-    AcercadeComponent
+    AcercadeComponent,
+    ExperiencesComponent,
+    ExperienceComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

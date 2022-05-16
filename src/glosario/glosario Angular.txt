@@ -1,0 +1,533 @@
+TPF Angular – Argentina Programa
+Temas: 
+	* generacion de componentes, servicios
+	* @input, @output, binding con modulo FormsModule
+	* usamos servicio con modulo HttpClientModule
+
+
+########## corroboramos que esté instalado npm
+npm -v
+########## instalamos angular
+npm install -g @angular/cli
+##########nos aseguramos que Angular se instaló bien
+ng v
+##########creamos la app TPF-g223
+ng new tpf-prueba-g223
+##########agregamos bootstrap a nuestro proyecto, dentro del head:
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+dentro del body (antes de cerrar):
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>   
+	
+########## creamos nuestro primer componente header
+ng generate component componentes/header --skip-tests=true
+########## copiamos parte del código (div correspondiente al header) del proyecto front_con_js al componente header del proyecto angular 
+########## copiamos el contenido de styles.css de proyecto a proyecto
+########## ejecutamos nuestra aplicación para probar
+ng serve
+########## creamos componente profile
+ng generate component componentes/profile --skip-tests=true
+########## copiamos parte del codigo(div correspondiente al profile) del proyecto front_con_js al componente profile del proyecto angular 
+########## agregamos el componente a la vista
+<router-outlet>
+  <app-header></app-header>
+  <app-profile></app-profile>
+</router-outlet>
+
+##agregar css a su proyecto angular:
+.mat-card {
+    border-radius: 32px;
+    margin: 10px 10px;
+    padding: 20px;
+    border-color: #0a66c2;
+}
+.mat-card#first-card {
+    padding: 0;
+}
+.profile-image {
+    border-radius: 50%;
+    width: 152px;
+    height: 152px;
+    margin-top: -110px;
+    z-index: 1;
+}
+div#info-actions {
+    display: flex;
+}
+div#info-actions button {
+    margin-right: 8px;
+}
+div#info-contact span {
+    font-size: 1rem;
+    font-weight: 400;
+}
+div#info-contact span a {
+    color: #0a66c2;
+    touch-action: manipulation;
+    text-decoration: none;
+}
+div#info-company {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+div#info-data {
+    display: flex;
+    justify-content: space-between;
+}
+div#info-data h1 {
+    font-size: 1.8rem;
+    display: inline;
+    font-weight: 500;
+    line-height: 1.25;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+div#info-data ul#info-details {
+    width: 232px;
+    list-style: none;
+    flex-shrink: 0;
+}
+div#info-data ul#info-details li a {
+    color: black;
+    display: flex;
+    text-decoration: none;
+}
+div#info-data ul#info-details li a h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    align-self: center;
+    vertical-align: baseline;
+}
+div#info-data ul#info-details li a img {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+}
+ul.items-list {
+    list-style: none inside;
+}
+ul.items-list li {
+    display: flex;
+    margin: 10px 0;
+}
+ul.items-list li div.data-container {
+    flex-grow: 1;
+}
+ul.items-list li div.data-container a {
+    display: flex;
+    color: black;
+    text-decoration: none;
+}
+ul.items-list li div.data-container a div.logo-image-container {
+    margin: 10px 0;
+}
+ul.items-list li div.data-container a div.logo-image-container img.logo-image {
+    height: 60px;
+    width: 60px;
+}
+ul.items-list li div.data-container a div.list-info {
+    margin: 0 10px;
+}
+ul.items-list li div.data-container a div.list-info h3 {
+    color: black;
+    margin: 10px;
+}
+ul.items-list li div.data-container a div.list-info h4, ul.items-list li div.data-container a div.list-info time {
+    color: gray;
+    margin: 0 5px;
+}
+ul.items-list li div.data-container a div.list-info p {
+    color: black;
+    margin: 0 5px;
+}
+ol.items-list {
+    list-style: none inside;
+}
+ol.items-list li div.aptitude-info a {
+    text-decoration: none;
+    color: grey;
+}
+ol.items-list li div.aptitude-info a span {
+    color: black;
+}
+div.achivements {
+    display: flex;
+    position: relative;
+    padding: 16px 0 0 12px;
+}
+div.achivements h3 {
+    color: #0a66c2;
+    min-width: 64px;
+    text-align: right;
+    line-height: 36px;
+    margin-top: -3px;
+    padding-right: 12px;
+    font-size: 2rem;
+}
+div.achivements div.project-title h3 {
+    font-size: 1.4rem;
+    text-align: center;
+}
+div.achivements ul.project-list li {
+    display: inline;
+}
+.card-titles {
+    display: flex;
+}
+.card-titles h2 {
+    flex: 10;
+    margin: auto;
+}
+.card-titles .btn-edit {
+    flex: 1;
+    flex-direction: column;
+    align-self: flex-end;
+    justify-content: flex-end;
+    display: flex;
+    text-align: end;
+}
+#info-img {
+    display: flex;
+}
+.btn-right {
+    display: flex;
+    align-self: flex-end;
+}
+.fa-button,.fa {
+    color: black;
+    display: block;
+    height: 2.4rem;
+    width: 2.4rem;
+    line-height: 2.4rem;
+    text-align: center;
+    border-radius: 50%;
+    background: white;
+}
+.fa-button:hover,.fa:hover {
+    background: gray;
+}
+div#profile-background {
+    display: flex;
+    z-index: 1;
+}
+div#profile-background img {
+    width: 100%;
+    border-radius: 32px 32px 0 0;
+}
+.data-control{
+    display: flex;
+}
+
+.mr-auto{
+    margin-right: 0!important;
+    margin-left: auto!important;
+}
+########## creamos componente acercade
+ng generate component componentes/acercade --skip-tests=true
+########## copiamos parte del código (div correspondiente al acercade) del proyecto front_con_js al componente acercade del proyecto angular 
+########## agregamos el componente a la vista
+<router-outlet>
+  <app-header></app-header>
+  <app-profile></app-profile>
+  <app-acercade></app-acercade>
+</router-outlet>
+########## creamos componente experiences
+ng generate component componentes/experiences --skip-tests=true
+########## agregamos el componente a la vista
+<router-outlet>
+  <app-header></app-header>
+  <app-profile></app-profile>
+  <app-acercade></app-acercade>
+  <app-experiences></app-experiences>
+</router-outlet>
+########## También vamos a crear una carpeta nueva dentro de src que vamos a llamar models y adentro vamos a crear un nuevo archivo llamado Experience.ts
+export class Experience {
+  codigo: number
+  descripcion:string
+  observacion: string
+  mesesTrabajados:number
+  company:object
+
+  constructor(codigo:number = 0,descripcion:string = "" , observacion:string = "" , mesesTrabajados:number=1, company:object= {}){
+    this.descripcion = descripcion
+    this.observacion = observacion
+    this.codigo = codigo
+    this.mesesTrabajados = mesesTrabajados
+    this.company = company
+  }
+
+  aumentarTiempoTrabajado() {
+    this.mesesTrabajados++
+  }
+
+}
+
+
+########## agregamos el siguiente codigo al html
+<div class="experiences">
+  <h3> Esta es nuestra lista de experiencias! </h3>
+  <div *ngFor="let experiencia of experiences">
+    <h4>Nueva experiencia</h4>
+    <p>Descripción: {{experiencia.descripcion}}</p>
+    <p>Observación: {{experiencia.observacion}}</p>
+    <p>Código: {{experiencia.codigo}}</p>
+  </div>
+</div>
+##########como nos da error, importamos el modelo los datos en experience.component.ts 
+import { Experience } from 'src/app/models/Experience';
+##########tambien cargamos los datos
+ experiences: Experience[] = []
+  constructor() { }
+  ngOnInit(): void {
+    let exper1 = new Experience(1,"Futbolista", "Patronato", 12 )
+    this.experiences.push(exper1)
+    this.experiences.push(new Experience(2,"Developer", "Securita", 55 ))
+    this.experiences.push(new Experience(3, "Docente", "Argentina Programa 2022", 22 ))
+  }
+  ########### probar código !!!!!!!###########  
+########## ahora vamos a desagregar componentes (componentizar)
+########## creamos componente experience
+ng generate component componentes/experience --skip-tests=true
+########## agregamos el siguiente código en experience.component.html
+<div class="experience">
+  <h4>Experiencia: {{experience.codigo}}</h4>
+    <p>Descripción: {{experience.descripcion}}</p>
+    <p>Observación: {{experience.observacion}}</p>
+    Editar la Descripcion: <input type="text" [(ngModel)]="experience.descripcion">
+    Editar la Observacion:  <input type="text" [(ngModel)]="experience.observacion">
+  </div>
+  
+  #agregamos el hijo al padre: dentro de experiences.component.html agregamos el siguiente codifgo:
+  <div class="experiences">
+  <h3> Esta es nuestra lista de experiencias! </h3>
+  <div *ngFor="let experiencia of experiences">
+    <app-experience [experience]= "experiencia"></app-experience>
+  </div>
+</div>
+
+  
+ ########## pasamos propiedades del padre al hijo a traves de @input
+ ########## agregamos en experience.component.ts:
+   @Input() experience: Experience = new Experience()   
+ ########## agregamos two-way binding 
+ ########## agregamos el siguiente código en experience.component.html
+ Cambiar Descripción:<input type="text" [(ngModel)]="experience.descripcion">
+ Cambiar Observación:<input type="text" [(ngModel)]="experience.observacion"> 
+  ##########agregamos la libreria FormsModule en las importaciones de app.module.ts
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule
+  ],
+########## Para capturar eventos de los elementos html, los ponemos entre paréntesis y de la
+########## manera que angular nos indique en su documentación oficial.
+########## Por ejemplo en el evento onClick se captura con (click)
+
+########## vamos a aumentar los mesesTrabajados a través de eventos
+<div class="experience">
+  <h4>Experiencia: {{experience.codigo}}</h4>
+    <p>Descripción: {{experience.descripcion}}</p>
+    <p>Observación: {{experience.observacion}}</p>
+    <p>Antiguedad (meses): {{experience.mesesTrabajados}}
+     &nbsp; <button class="btn btn-primary mb-3" (click)="aumentarAntiguedad(experience)" >Cumplir Años</button>
+    </p>
+    Editar la Descripcion: <input type="text" [(ngModel)]="experience.descripcion">
+    Editar la Observacion:  <input type="text" [(ngModel)]="experience.observacion">
+  </div>  
+  ########## y en el componente ts:
+  aumentarAntiguedad(expe:Experience){
+    expe.aumentarTiempoTrabajado()
+  }  
+  ########## ahora cargamos los datos a través de servicios:
+  ng generate service services/experience
+  ########## dentro del servicio agregamos:
+  import { Injectable } from '@angular/core';
+import { Experience } from '../models/Experience';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ExperienceService {
+  experiencias: Experience[] = []
+  constructor() { }
+  getAllExperiencias(): Experience[] {
+    let exper1 = new Experience("Futbolista", "Patronato", 1, 36 )
+    this.experiencias.push(exper1)
+    this.experiencias.push(new Experience("Developer", "Securita", 1 ,24))
+    this.experiencias.push(new Experience("Docente", "Argentina Programa 2022", 3,8 ))
+  return this.experiencias
+  }
+  // solo un ejemplo de los servicios que se pueden ofrecer
+  removeExperience(experience:Experience):void {
+    // TODO implement logic to remove a Experience
+    }
+}
+########## luego usamos el servicio en el componente experiences.component.ts:
+import { Component, OnInit } from '@angular/core';
+import { Experience } from 'src/app/models/Experience';
+import { ExperienceService } from 'src/app/services/experience.service';
+
+@Component({
+  selector: 'app-experiences',
+  templateUrl: './experiences.component.html',
+  styleUrls: ['./experiences.component.css']
+})
+export class ExperiencesComponent implements OnInit {
+  experiences: Experience[] = []
+  constructor(private experienceService:ExperienceService) { }
+  ngOnInit(): void {
+    this.getAll();
+  }
+  getAll(){
+    this.experiences= this.experienceService.getAllExperiencias()
+  }
+}
+
+
+#subimos todo a github
+#creamos repo en git y luego seguimos pasos para pushear nuestro codigo
+
+
+
+################################################################2da parte##############################################
+
+#simulamos peticiones http en nuestros servicios
+
+#creamos JSON con datos en assets/data/data.json
+{
+  "experiencias":[
+        {"descripcion":"Futbolista",
+        "observacion": "C.A. Patronato",
+        "codigo": 1,
+        "mesesTrabajados":24,
+        "company":{"name":"cap", "img":"url_de_la_imagen", "url":"ur_de_la_compania"}
+      },
+        {"descripcion":"Developer",
+          "observacion": "Securita",
+          "codigo": 2,
+          "mesesTrabajados":18,
+          "company":{"name":"securita", "img":"url_de_la_imagen", "url":"ur_de_la_compania"}
+        },
+        {"descripcion":"Docente",
+            "observacion": "Argentina Programa 2022",
+            "codigo": 3,
+            "mesesTrabajados":12,
+            "company":{"name":"inti", "img":"url_de_la_imagen", "url":"ur_de_la_compania"}
+       }
+    ],
+
+  "estudios":[{},{},{}]
+
+
+}
+
+
+
+#agregamos la importacion del module a app.module.ts
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
+  ],
+#importamos httpClient
+import { HttpClient } from '@angular/common/http';
+#agregamos observable en el metodo del servicio:
+  getAllExperiencias(): Observable<any> {  
+     return  this.httpClient.get('./assets/data/data.json');     
+  }
+# nos suscribimos y asignamos a la variable en el componente que use el servicio(experiences.component.ts)
+getAll(){
+    this.experienceService.getAllExperiencias().subscribe(data=>{
+      console.log('data', data);
+//      luego asignamos a expeciencies para mostrar
+      this.experiences= data.experiencias;
+      console.log('this.experiences',data.experiencias)
+    })
+  }
+  
+  #nuestro servicio quedaria de la siguente manera
+  
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Experience } from '../models/Experience';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ExperienceService {
+
+  experiencias: Experience[] = []
+
+  constructor(private httpClient: HttpClient) { }
+
+  getAllExperiencias(): Observable<any> {
+   // let exper1 = new Experience("Futbolista", "Patronato", 1, 36 )
+   // this.experiencias.push(exper1)
+   // this.experiencias.push(new Experience("Developer", "Securita", 2 ,24))
+   // this.experiencias.push(new Experience("Docente", "Argentina Programa 2022", 3,8 ))
+     return  this.httpClient.get('./assets/data/data.json');
+     // console.log('data getAllExperiencias:', data);
+      //return data;
+  }
+  // solo un ejemplo de los servicios que se pueden ofrecer
+  removeExperience(experience:Experience):void {
+    // TODO implement logic to remove a Experience
+    }
+}
+
+
+# y nuestro componente:
+
+import { Component, OnInit } from '@angular/core';
+import { Experience } from 'src/app/models/Experience';
+import { ExperienceService } from 'src/app/services/experience.service';
+
+@Component({
+  selector: 'app-experiences',
+  templateUrl: './experiences.component.html',
+  styleUrls: ['./experiences.component.css']
+})
+export class ExperiencesComponent implements OnInit {
+
+  experiences: Experience[] = []
+
+  constructor(private experienceService:ExperienceService) { }
+
+
+  ngOnInit(): void {
+    this.getAll();
+  }
+
+  getAll(){
+    this.experienceService.getAllExperiencias().subscribe(data=>{
+      console.log('data', data);
+//      luego asignamos a expeciencies para mostrar
+      this.experiences= data.experiencias;
+      console.log('this.experiences',data.experiencias)
+    })
+  }
+
+  borrarExperienceDeLista(experienceParaBorrar: Experience) {
+    // con este truco borramos a la Experience pero en realidad deberíamos
+    // llamar al service
+    this.experiences = this.experiences.filter(e => e.codigo !== experienceParaBorrar.codigo)
+    }
+}
+
+
+
+
+
+
+
+
+
